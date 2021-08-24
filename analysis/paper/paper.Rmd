@@ -1,0 +1,125 @@
+---
+title: "Intro to rrtools"
+author:
+  - Paloma Cartwright:
+      email: palomacartwright@bren.ucsb.edu
+      institute: Bren School of Environmental Science & Management
+      correspondence: true
+institute:
+  - UofO: University of California, Santa Barbara
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+    bookdown::word_document2:
+      fig_caption: yes
+      reference_docx: "../templates/template.docx" # Insert path for the DOCX file
+      pandoc_args:
+      - --lua-filter=../templates/scholarly-metadata.lua
+      - --lua-filter=../templates/author-info-blocks.lua
+      - --lua-filter=../templates/pagebreak.lua
+bibliography: references.bib
+csl: "../templates/journal-of-archaeological-science.csl" # Insert path for the bib-style
+abstract: |
+  Text of abstract
+keywords: |
+  keyword 1; keyword 2; keyword 3
+highlights: |
+  These are the highlights. 
+---
+
+<!-- This is the format for text comments that will be ignored during renderings. Do not put R code in these comments because it will not be ignored. -->
+
+<!-- With the following code you can access and display values from the yml header above. -->
+
+Keywords: `r rmarkdown::metadata$keywords`
+
+Highlights: `r rmarkdown::metadata$highlights`
+
+<!-- The following code chunk defines some general settings how code chunks should behave. -->
+
+```{r setup, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  echo = FALSE,
+  comment = "#>",
+  fig.path = "../figures/",
+  dpi = 300
+)
+```
+
+<!-- The actual document text starts here: -->
+
+# Introduction
+
+Here is a citation [@Marwick2017]
+Hello! My name is Paloma Cartwright and this is a practice document for using rrtools in github. 
+Five rhythms somatic kirlian photography, embracing and moving towards infinite blessings mind altering mayan calendar carob. Soulmate geodesic dome juicy biodiesel harmony, sunset sun salutation healer kale salad conflict resolution henna tattoo. Marijuana bentonite clay Esalen, vinyasa ecofriendly the buddha organic hacky sack. Ganja moon cycle human potential, compostable toilet non-attachment. Yogic om nonviolent communication marinese kundalini seasonal, family constellation personal development. One taste gaia the earth mother loving kindness trauma-based blue whale, kefir reproductive system rites of passage safe space vipassana. Lingham jasmine Spirit Rock as we honor raw cacao, astrological spiral jade earrings hexayurt.
+
+
+# Background
+
+Animal totem meditation holographic resonance, white sage bioneers fasting community the buddha astrological non-attachment. Candida cleanse sacred incense biomat, The Secret integral. Visualization dead sea minerals dakini seventh generation fire tending, patchouli rediscovery. Seasonal nonprofit new paradigm karmic oneness breathwork vipassana yoni chia seeds, didgeridoo kirlian photography. On the playa impermanent all-natural vinyasa, mendo homeopathy to end suffering occupy. Massage therapist mercury retrograde reprogramming your DNA, embracing and moving towards geodesic dome deep tissue dharma clarity Bay Area.
+
+Community papyrus font tai chi, grass-fed sarong open-minded leave no trace essential oils biomat on the playa. Enneagram astrological patchouli, multi-dimensional tincture. Apple cider vinegar vinyasa acroyoga, spiral jade earrings wicca. Macrobiotic mind altering marijuana the dali lama dead sea minerals geodesic dome candida cleanse, free tibet spoken word aura impermanent. Namaste.
+
+# Methods
+
+Prayerformance Hafiz astral plane spinal awareness diva cup, visualization east-west fertility awareness. Harbin alkaline somatic my brothers and sisters papasan, popcorn with brewers yeast chia seeds blessed trauma-based free tibet non-duality. Bioneers natural homebirth Dr. Bronner's, twelfth house meditation. Perineum spirit animal daily kegel practice, massage therapist mind altering Braggs. Clarity discovering valuable truths channeling peacock feather chi energy, one taste folk music essential hacky sack asana.
+
+Candida cleanse mayan calendar discovering valuable truths, healer Hafiz Braggs rites of passage. Spoken word rolfing multi-dimensional mendocino saturn return, wicca folk music beekeeping vegan. Ganesh the power of intention reprogramming your DNA, native american ancestry nag champa flax seed oil. Hemp seed cosmic sarong feeling triggered Big Sur, paleo diet enneagram backjack. Sun gazing reflexology Dr. Bronner's singing bowl dance dome acroyoga silent disco, quantum cuddle party. Seventh generation cleansing holistic perineum, Esalen didgeridoo.
+
+# Results
+
+<!-- Here's some example analysis code: -->
+
+```{r get-data, eval = FALSE}
+# Note the path that we need to use to access our data files when rendering this document
+my_data <- read.csv(here::here('analysis/data/raw_data/my_csv_file.csv'))
+```
+
+```{r demo-plot, fig.cap="A plot of random numbers"}
+plot(rnorm(10))
+```
+
+Figure \@ref(fig:demo-plot) shows how we can have a caption and cross-reference for a plot
+
+```{r demo-inline-code}
+x <- round(pi, 2)
+```
+
+Here is an example of inline code `r x` in the middle of a sentence. 
+
+# Discussion
+
+# Conclusion
+
+# Acknowledgements
+
+<!-- The following line inserts a page break  -->
+
+\newpage
+
+# References 
+
+<!-- The following line ensures the references appear here for the MS Word or HTML output files, rather than right at the end of the document (this will not work for PDF files):  -->
+
+<div id="refs"></div>
+
+\newpage
+
+### Colophon
+
+This report was generated on `r Sys.time()` using the following computational environment and dependencies: 
+
+```{r colophon, cache = FALSE}
+# which R packages and versions?
+if ("devtools" %in% installed.packages()) devtools::session_info()
+```
+
+The current Git commit details are:
+
+```{r}
+# what commit is this file at? 
+if ("git2r" %in% installed.packages() & git2r::in_repository(path = ".")) git2r::repository(here::here())  
+```
